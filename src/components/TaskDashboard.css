@@ -188,6 +188,24 @@
   transform: scale(1.05); /* Scaling effect */
 }
 
+.logout-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  background-color: #dc3545; /* Red */
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px; /* Margin below the button */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Darker red */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 500px) {
   .task-dashboard {
