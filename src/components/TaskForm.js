@@ -1,13 +1,14 @@
-// TaskForm.js
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose }) => {
+const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [priority, setPriority] = useState('Medium');
   const [status, setStatus] = useState('To Do');
+  const [assignedUser, setAssignedUser] = useState(''); // State for assigned user (admin only)
+  const [users, setUsers] = useState([]); // List of available users for assignment
   const [error, setError] = useState('');
   const token = localStorage.getItem('token');
 
@@ -19,46 +20,83 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose }) => {
       setDueDate(currentTask.dueDate.split('T')[0]); // Format due date
       setPriority(currentTask.priority);
       setStatus(currentTask.status);
+      if (isAdmin && currentTask.assignedUser) {
+        setAssignedUser(currentTask.assignedUser._id); // Set assignedUser for admin during edit
+      }
     }
-  }, [currentTask]);
+  }, [currentTask, isAdmin]);
+
+  // Fetch users for assignment (only for admin users)
+  useEffect(() => {
+    const fetchUsers = async () => {
+      if (!isAdmin) return; // Only fetch users if the logged-in user is admin
+
+      try {
+        const response = await axios.get('http://localhost:5000/api/users', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUsers(response.data || []);
+      } catch (error) {
+        handleError(error);
+      }
+    };
+
+    fetchUsers();
+  }, [isAdmin, token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Check if we're editing or creating a task
-    if (currentTask) {
-      try {
-        await axios.put(`http://localhost:5000/api/tasks/${currentTask._id}`, {
-          title,
-          description,
-          dueDate,
-          priority,
-          status,
-        }, {
+
+    try {
+      let requestBody = {
+        title,
+        description,
+        dueDate,
+        priority,
+        status
+      };
+
+      // Add assignedUser only if the user is admin and has selected an assignee
+      if (isAdmin && assignedUser) {
+        requestBody.assignedUser = assignedUser;
+      }
+
+      if (currentTask) {
+        // Update existing task
+        await axios.put(`http://localhost:5000/api/tasks/${currentTask._id}`, requestBody, {
           headers: { Authorization: `Bearer ${token}` },
         });
         clearCurrentTask(); // Clear form after editing
-      } catch (err) {
-        setError(err.response?.data?.message || 'Failed to update task');
-      }
-    } else {
-      try {
-        await axios.post('http://localhost:5000/api/tasks/create', {
-          title,
-          description,
-          dueDate,
-          priority,
-          status,
-        }, {
+      } else {
+        // Create a new task
+        await axios.post('http://localhost:5000/api/tasks/create', requestBody, {
           headers: { Authorization: `Bearer ${token}` },
         });
-      } catch (err) {
-        setError(err.response?.data?.message || 'Failed to create task');
       }
+
+      fetchTasks(); // Refresh task list
+      resetForm(); // Reset form fields
+    } catch (err) {
+      handleError(err);
     }
-    
-    fetchTasks(); // Refresh task list
-    setTitle(''); setDescription(''); setDueDate(''); setPriority('Medium'); setStatus('To Do'); // Reset form
+  };
+
+  const resetForm = () => {
+    setTitle('');
+    setDescription('');
+    setDueDate('');
+    setPriority('Medium');
+    setStatus('To Do');
+    setAssignedUser('');
+    setError('');
+  };
+
+  const handleError = (error) => {
+    if (error.response) {
+      setError(error.response.data.message || 'An unexpected error occurred');
+    } else {
+      setError('A network error occurred. Please check your connection.');
+    }
   };
 
   return (
@@ -99,7 +137,22 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose }) => {
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
       </select>
-      
+
+      {/* Only show user assignment dropdown for admin */}
+      {isAdmin && users.length > 0 && (
+        <div>
+          <label>Assign To:</label>
+          <select value={assignedUser} onChange={(e) => setAssignedUser(e.target.value)}>
+            <option value="">Select User</option>
+            {users.map(user => (
+              <option key={user._id} value={user._id}>
+                {user.username}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <button type="submit">{currentTask ? 'Update Task' : 'Create Task'}</button>
       {currentTask && <button onClick={clearCurrentTask}>Cancel Edit</button>}
       <button type="button" onClick={onClose}>Close</button>
