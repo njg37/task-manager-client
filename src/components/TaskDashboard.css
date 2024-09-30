@@ -188,6 +188,13 @@
   transform: scale(1.05); /* Scaling effect */
 }
 
+.header-buttons {
+  display: flex;
+  justify-content: space-between; /* Space between buttons */
+  align-items: center; /* Center align vertically */
+  margin-bottom: 20px; /* Space below the header */
+}
+
 .logout-button {
   padding: 10px 15px;
   border: none;
@@ -196,7 +203,6 @@
   color: white;
   cursor: pointer;
   font-size: 1rem;
-  margin-bottom: 20px; /* Margin below the button */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
@@ -204,6 +210,7 @@
   background-color: #c82333; /* Darker red */
   transform: scale(1.05); /* Slight scaling effect on hover */
 }
+
 
 
 /* Responsive adjustments */

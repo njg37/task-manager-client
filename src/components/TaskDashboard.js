@@ -108,10 +108,16 @@ const TaskDashboard = () => {
     <div className="task-dashboard">
       <h2 className="dashboard-title">Your Tasks</h2>
 
-      {/* Logout Button */}
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
+      {/* Create Task and Logout Button Container */}
+      <div className="header-buttons">
+        <button className="create-task-button" onClick={() => setShowForm(true)}>
+          <i className="fas fa-plus"></i> Create New Task
+        </button>
+
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
 
       {/* Filter Container */}
       <div className="filter-container">
@@ -145,12 +151,6 @@ const TaskDashboard = () => {
           </select>
         )}
       </div>
-
-      {!showForm && (
-        <button className="create-task-button" onClick={() => setShowForm(true)}>
-          <i className="fas fa-plus"></i> Create New Task
-        </button>
-      )}
 
       {showForm && (
         <TaskForm 
