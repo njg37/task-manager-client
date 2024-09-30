@@ -17,6 +17,55 @@
   font-weight: 600; /* Bolder font for title */
 }
 
+/* Filter Container */
+.filter-container {
+  display: flex; /* Align search and filter elements in a row */
+  gap: 10px; /* Space between elements */
+  margin-bottom: 20px; /* Margin below filter container */
+}
+
+/* Input field styles */
+.filter-container input[type="text"] {
+  padding: 12px; /* Padding inside the input field */
+  border: 1px solid #ddd; /* Soft border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1rem; /* Font size */
+  width: 200px; /* Fixed width for the search input */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition for focus effects */
+}
+
+/* Focus effect for search input */
+.filter-container input[type="text"]:focus {
+  border-color: #1a73e8; /* Blue focus color */
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+}
+
+/* Button styles */
+.search-button {
+  padding: 12px 18px; /* Button padding */
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  color: white;
+  background-color: #007bff; /* Blue */
+  cursor: pointer;
+  font-size: 1rem; /* Button font size */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+}
+
+.search-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+/* Select field styles */
+.filter-container select {
+  padding: 12px; /* Padding inside the select field */
+  border: 1px solid #ddd; /* Soft border */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 1rem; /* Font size */
+  background-color: #ffffff; /* White background */
+}
+
 /* Button styles */
 .create-task-button {
   padding: 12px 18px; /* Slightly larger padding for buttons */
@@ -151,5 +200,10 @@
 
   .task-item {
       padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .filter-container {
+      flex-direction: column; /* Stack filters vertically on smaller screens */
+      gap: 5px; /* Reduce space between elements */
   }
 }

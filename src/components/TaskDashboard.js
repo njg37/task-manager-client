@@ -4,30 +4,73 @@ import TaskForm from './TaskForm';
 import './TaskDashboard.css';
 
 const TaskDashboard = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]); // Displayed tasks
+  const [allTasks, setAllTasks] = useState([]); // All tasks fetched from the backend
+  const [users, setUsers] = useState([]); // Users for admin to filter by
   const [page, setPage] = useState(1);
   const [currentTask, setCurrentTask] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [priorityFilter, setPriorityFilter] = useState('');
+  const [assignedUserFilter, setAssignedUserFilter] = useState('');
   const token = localStorage.getItem('token');
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
+  // Fetch tasks based on current filters
   const fetchTasks = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/tasks?page=${page}`, {
+      const response = await axios.get(`http://localhost:5000/api/tasks`, {
         headers: { Authorization: `Bearer ${token}` },
+        params: {
+          page: page,
+        },
       });
       setTasks(response.data.tasks || []);
+      setAllTasks(response.data.tasks || []); // Store all tasks for filtering
     } catch (error) {
       handleError(error);
     }
   };
+
+  // Fetch users for admin to filter tasks by assigned user
+  const fetchUsers = async () => {
+    if (isAdmin) {
+      try {
+        const response = await axios.get('http://localhost:5000/api/users', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUsers(response.data); // Set the fetched users
+      } catch (error) {
+        handleError(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchTasks(); // Fetch tasks whenever filters change
+    fetchUsers(); // Fetch users on component mount
+  }, [page]);
+
+  // Filter tasks based on search term and filters
+  const filteredTasks = allTasks.filter(task => {
+    const matchesSearch = 
+      task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.description.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesStatus = statusFilter ? task.status === statusFilter : true;
+    const matchesPriority = priorityFilter ? task.priority === priorityFilter : true;
+    const matchesAssignedUser = assignedUserFilter ? task.assignedUser?._id === assignedUserFilter : true;
+
+    return matchesSearch && matchesStatus && matchesPriority && matchesAssignedUser;
+  });
 
   const deleteTask = async (taskId) => {
     try {
       await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchTasks();
+      fetchTasks(); // Refresh tasks after deletion
     } catch (err) {
       handleError(err);
     }
@@ -43,10 +86,6 @@ const TaskDashboard = () => {
     setShowForm(false);
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, [page]);
-
   const handleError = (error) => {
     if (error.response) {
       alert(error.response.data.message || 'An unexpected error occurred');
@@ -58,13 +97,46 @@ const TaskDashboard = () => {
   return (
     <div className="task-dashboard">
       <h2 className="dashboard-title">Your Tasks</h2>
-      
+
+      {/* Filter Container */}
+      <div className="filter-container">
+        <input
+          type="text"
+          placeholder="Search tasks..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button className="search-button" onClick={() => {}}>
+          Search
+        </button>
+        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+          <option value="">All Statuses</option>
+          <option value="To Do">To Do</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <select value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)}>
+          <option value="">All Priorities</option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+        {isAdmin && ( // Show assigned user filter only for admin
+          <select value={assignedUserFilter} onChange={(e) => setAssignedUserFilter(e.target.value)}>
+            <option value="">All Assigned Users</option>
+            {users.map(user => (
+              <option key={user._id} value={user._id}>{user.username}</option>
+            ))}
+          </select>
+        )}
+      </div>
+
       {!showForm && (
         <button className="create-task-button" onClick={() => setShowForm(true)}>
           <i className="fas fa-plus"></i> Create New Task
         </button>
       )}
-      
+
       {showForm && (
         <TaskForm 
           fetchTasks={fetchTasks} 
@@ -77,10 +149,10 @@ const TaskDashboard = () => {
           isAdmin={isAdmin}
         />
       )}
-      
+
       <ul className="task-list">
-        {tasks.length > 0 ? (
-          tasks.map(task => (
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map(task => (
             <li key={task._id} className="task-item">
               <h3>{task.title}</h3> {/* Task Title */}
               <p>{task.description}</p> {/* Task Description */}
