@@ -82,8 +82,14 @@ const TaskDashboard = () => {
         {tasks.length > 0 ? (
           tasks.map(task => (
             <li key={task._id} className="task-item">
-              <span>{task.title} - {task.status} - {task.priority}</span>
-              <div className="task-buttons">
+              <h3>{task.title}</h3> {/* Task Title */}
+              <p>{task.description}</p> {/* Task Description */}
+              <p>Status: {task.status}</p> {/* Task Status */}
+              <p>Priority: {task.priority}</p> {/* Task Priority */}
+              {isAdmin && task.assignedUser && (
+                <p>Assigned to: {task.assignedUser.username}</p> // Assigned User
+              )}
+              <div className="task-item-buttons">
                 <button className="edit-button" onClick={() => editTask(task)}>
                   <i className="fas fa-edit"></i> Edit
                 </button>
