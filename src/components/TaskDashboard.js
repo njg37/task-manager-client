@@ -24,6 +24,9 @@ const TaskDashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
         params: {
           page: page,
+          status: statusFilter,
+          priority: priorityFilter,
+          assignedUser: assignedUserFilter, // Ensure this matches your backend
         },
       });
       setTasks(response.data.tasks || []);
@@ -50,7 +53,7 @@ const TaskDashboard = () => {
   useEffect(() => {
     fetchTasks(); // Fetch tasks whenever filters change
     fetchUsers(); // Fetch users on component mount
-  }, [page]);
+  }, [page, statusFilter, priorityFilter, assignedUserFilter]);
 
   // Filter tasks based on search term and filters
   const filteredTasks = allTasks.filter(task => {
@@ -94,9 +97,21 @@ const TaskDashboard = () => {
     }
   };
 
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove token from local storage
+    localStorage.removeItem('isAdmin'); // Remove admin status from local storage
+    window.location.href = '/'; // Redirect to the login or home page
+  };
+
   return (
     <div className="task-dashboard">
       <h2 className="dashboard-title">Your Tasks</h2>
+
+      {/* Logout Button */}
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
 
       {/* Filter Container */}
       <div className="filter-container">
