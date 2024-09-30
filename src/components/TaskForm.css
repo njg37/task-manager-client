@@ -3,82 +3,83 @@
     width: 100%;
     max-width: 400px;
     margin: 30px auto;
-    padding: 30px;
+    padding: 40px; /* Increased padding for a more spacious feel */
     background-color: #ffffff; /* White background for the form */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px; /* Increased gap for better spacing between elements */
     font-family: 'Poppins', sans-serif;
-  }
-  
-  /* Form title */
-  .task-form-title {
-    font-size: 2rem;
+}
+
+/* Form title */
+.task-form-title {
+    font-size: 2.5rem; /* Larger title size for better emphasis */
     text-align: center;
-    color: #2c3e50; /* Dark blue text */
-  }
-  
-  /* Error message */
-  .task-form-error {
+    color: #34495e; /* Darker blue text for a modern look */
+    margin-bottom: 10px; /* Spacing below title */
+}
+
+/* Error message */
+.task-form-error {
     color: #e74c3c;
     font-size: 0.9rem;
     text-align: center;
-  }
-  
-  /* Input fields */
-  .task-form-input,
-  .task-form-textarea,
-  .task-form-select {
-    padding: 12px;
-    border-radius: 5px;
+}
+
+/* Input fields */
+.task-form-input,
+.task-form-textarea,
+.task-form-select {
+    padding: 14px; /* Slightly increased padding for input fields */
+    border-radius: 8px; /* More rounded corners */
     border: 1px solid #ddd; /* Soft border */
     font-size: 1rem;
     transition: border 0.3s ease, box-shadow 0.3s ease;
     outline: none;
-  }
-  
-  /* Focus effect for input fields */
-  .task-form-input:focus,
-  .task-form-textarea:focus,
-  .task-form-select:focus {
+}
+
+/* Focus effect for input fields */
+.task-form-input:focus,
+.task-form-textarea:focus,
+.task-form-select:focus {
     border-color: #1a73e8; /* Blue focus color */
     box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
-  }
-  
-  /* Textarea styles */
-  .task-form-textarea {
+}
+
+/* Textarea styles */
+.task-form-textarea {
     resize: none; /* Prevent resizing */
-    height: 100px; /* Fixed height */
-  }
-  
-  /* Button styles */
-  .task-form-button {
-    padding: 12px;
+    height: 120px; /* Slightly increased height for better visibility */
+}
+
+/* Button styles */
+.task-form-button {
+    padding: 14px; /* Increased padding for buttons */
     background-color: #1a73e8; /* Blue button color */
     color: white;
     font-size: 1.1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* More rounded corners */
     cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  /* Hover effect for buttons */
-  .task-form-button:hover {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for buttons */
+.task-form-button:hover {
     background-color: #155ab6; /* Darker blue for hover */
-    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 500px) {
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3); /* Stronger shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
     .task-form {
-      padding: 20px;
+        padding: 25px; /* Reduced padding for smaller screens */
     }
-  
+
     .task-form-title {
-      font-size: 1.8rem;
+        font-size: 2rem; /* Adjusted font size for smaller screens */
     }
-  }
-  
+}

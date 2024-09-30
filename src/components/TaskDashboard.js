@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TaskForm from './TaskForm';
-import './TaskDashboard.css'; // Import specific CSS for the TaskDashboard
+import './TaskDashboard.css';
 
 const TaskDashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -9,9 +9,8 @@ const TaskDashboard = () => {
   const [currentTask, setCurrentTask] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const token = localStorage.getItem('token');
-  const isAdmin = localStorage.getItem('isAdmin') === 'true'; // Convert string to boolean
+  const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
-  // Fetch tasks from the API
   const fetchTasks = async () => {
     try {
       const response = await axios.get(`http://localhost:5000/api/tasks?page=${page}`, {
@@ -23,26 +22,25 @@ const TaskDashboard = () => {
     }
   };
 
-  // Delete task
   const deleteTask = async (taskId) => {
     try {
       await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      fetchTasks(); // Refresh the task list after deletion
+      fetchTasks();
     } catch (err) {
       handleError(err);
     }
   };
 
   const editTask = (task) => {
-    setCurrentTask(task); // Set the task to be edited
-    setShowForm(true); // Show the form for editing
+    setCurrentTask(task);
+    setShowForm(true);
   };
 
   const clearCurrentTask = () => {
-    setCurrentTask(null); // Clear the task being edited
-    setShowForm(false); // Hide the form
+    setCurrentTask(null);
+    setShowForm(false);
   };
 
   useEffect(() => {
@@ -61,14 +59,12 @@ const TaskDashboard = () => {
     <div className="task-dashboard">
       <h2 className="dashboard-title">Your Tasks</h2>
       
-      {/* Create Task Button */}
       {!showForm && (
         <button className="create-task-button" onClick={() => setShowForm(true)}>
-          Create New Task
+          <i className="fas fa-plus"></i> Create New Task
         </button>
       )}
       
-      {/* Task Creation/Editing Form */}
       {showForm && (
         <TaskForm 
           fetchTasks={fetchTasks} 
@@ -76,20 +72,25 @@ const TaskDashboard = () => {
           clearCurrentTask={clearCurrentTask}
           onClose={() => {
             setShowForm(false);
-            fetchTasks(); // Fetch tasks again after closing the form
+            fetchTasks();
           }}
-          isAdmin={isAdmin} // Pass isAdmin prop
+          isAdmin={isAdmin}
         />
       )}
       
-      {/* Task List */}
       <ul className="task-list">
         {tasks.length > 0 ? (
           tasks.map(task => (
             <li key={task._id} className="task-item">
-              {task.title} - {task.status} - {task.priority}
-              <button className="edit-button" onClick={() => editTask(task)}>Edit</button>
-              <button className="delete-button" onClick={() => deleteTask(task._id)}>Delete</button>
+              <span>{task.title} - {task.status} - {task.priority}</span>
+              <div className="task-buttons">
+                <button className="edit-button" onClick={() => editTask(task)}>
+                  <i className="fas fa-edit"></i> Edit
+                </button>
+                <button className="delete-button" onClick={() => deleteTask(task._id)}>
+                  <i className="fas fa-trash-alt"></i> Delete
+                </button>
+              </div>
             </li>
           ))
         ) : (
@@ -97,10 +98,13 @@ const TaskDashboard = () => {
         )}
       </ul>
 
-      {/* Pagination */}
       <div className="pagination">
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
-        <button onClick={() => setPage(page + 1)}>Next</button>
+        <button className="pagination-button" onClick={() => setPage(page - 1)} disabled={page === 1}>
+          <i className="fas fa-angle-left"></i> Previous
+        </button>
+        <button className="pagination-button" onClick={() => setPage(page + 1)}>
+          <i className="fas fa-angle-right"></i> Next
+        </button>
       </div>
     </div>
   );

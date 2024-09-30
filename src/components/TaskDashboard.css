@@ -1,55 +1,68 @@
 /* Main Dashboard container */
 .task-dashboard {
-    padding: 20px;
+    padding: 30px; /* Increased padding for a more spacious feel */
     background-color: #f9f9f9; /* Light gray background for the dashboard */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Limit the width for better layout */
+    margin: 20px auto; /* Centered on the page */
   }
   
   /* Dashboard title */
   .dashboard-title {
-    font-size: 2rem;
-    color: #2c3e50; /* Dark blue for the title */
+    font-size: 2.5rem; /* Larger title size for better emphasis */
+    color: #34495e; /* Darker blue for the title */
     margin-bottom: 20px;
     text-align: center;
+    font-weight: 600; /* Bolder font for title */
   }
   
   /* Button styles */
-  .create-task-button, .edit-button, .delete-button {
-    padding: 10px 15px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  /* Create Task Button */
   .create-task-button {
+    padding: 12px 18px; /* Slightly larger padding for buttons */
+    margin-bottom: 20px; /* Margin below create button */
+    border: none;
+    border-radius: 8px; /* Rounded corners for a softer look */
+    color: white;
     background-color: #28a745; /* Green */
+    cursor: pointer;
+    font-size: 1rem; /* Consistent font size for buttons */
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
   .create-task-button:hover {
     background-color: #218838; /* Darker green */
+    transform: scale(1.05); /* Slight scaling effect on hover */
   }
   
-  /* Edit Button */
+  /* Edit and Delete Button styles */
+  .edit-button, .delete-button {
+    padding: 10px 15px; /* Button padding */
+    margin-left: 10px; /* Space between buttons */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    color: white;
+    cursor: pointer;
+    font-size: 1rem; /* Consistent font size for buttons */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
   .edit-button {
     background-color: #007bff; /* Blue */
   }
   
   .edit-button:hover {
     background-color: #0056b3; /* Darker blue */
+    transform: scale(1.05); /* Slight scaling effect on hover */
   }
   
-  /* Delete Button */
   .delete-button {
     background-color: #dc3545; /* Red */
   }
   
   .delete-button:hover {
     background-color: #c82333; /* Darker red */
+    transform: scale(1.05); /* Slight scaling effect on hover */
   }
   
   /* Task List */
@@ -67,6 +80,25 @@
     margin: 10px 0;
     display: flex;
     justify-content: space-between; /* Align buttons to the right */
+    align-items: center; /* Center align items vertically */
+    transition: box-shadow 0.3s ease; /* Smooth shadow effect */
+  }
+  
+  /* Add shadow on hover */
+  .task-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Shadow effect on hover */
+  }
+  
+  /* Task item text */
+  .task-item span {
+    flex-grow: 1; /* Take remaining space */
+    font-size: 1.1rem; /* Slightly larger font for task text */
+    color: #2c3e50; /* Dark blue for task text */
+  }
+  
+  /* Task item buttons container */
+  .task-item-buttons {
+    display: flex; /* Align edit and delete buttons side by side */
   }
   
   /* Pagination */
@@ -77,16 +109,28 @@
   }
   
   .pagination button {
-    padding: 10px 15px;
-    border: 1px solid #007bff; /* Blue border for pagination buttons */
-    background-color: #ffffff; /* White background */
-    color: #007bff; /* Blue text */
+    padding: 12px 18px; /* Consistent with create task button */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    color: white;
+    background-color: #007bff; /* Blue */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
   }
   
   .pagination button:hover {
-    background-color: #007bff; /* Change to blue background on hover */
-    color: white; /* White text on hover */
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Scaling effect */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 500px) {
+    .task-dashboard {
+      padding: 20px;
+    }
+  
+    .dashboard-title {
+      font-size: 2rem;
+    }
   }
   

@@ -1,67 +1,76 @@
 /* Main Task Report container */
 .task-report {
-    padding: 20px;
-    background-color: #f9f9f9; /* Light gray background for the report section */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px; /* Max width for the report section */
-    margin: 20px auto; /* Centering */
+  padding: 30px; /* Increased padding for a more spacious feel */
+  background-color: #ffffff; /* White background for the report section */
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+  max-width: 600px; /* Max width for the report section */
+  margin: 20px auto; /* Centering */
+  overflow: hidden; /* Prevent overflow of content */
+}
+
+/* Title style */
+.task-report-title {
+  font-size: 2.5rem; /* Larger title size for better emphasis */
+  color: #34495e; /* Darker blue text for modern look */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600; /* Bolder font for title */
+}
+
+/* Input fields and select styles */
+.task-report-input,
+.task-report-select {
+  padding: 14px; /* Increased padding for better usability */
+  border-radius: 8px; /* More rounded corners for a softer look */
+  border: 1px solid #ddd; /* Soft border */
+  font-size: 1rem;
+  margin-bottom: 15px; /* Space between fields */
+  width: 100%; /* Full width for inputs and selects */
+  box-sizing: border-box; /* Include padding and border in width */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition for focus effects */
+}
+
+/* Focus effect for inputs */
+.task-report-input:focus,
+.task-report-select:focus {
+  border-color: #1a73e8; /* Blue focus color */
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+}
+
+/* Button styles */
+.task-report-button {
+  padding: 14px; /* Increased padding for buttons */
+  background-color: #1a73e8; /* Blue button color */
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px; /* More rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; /* Add transform for hover */
+  width: 100%; /* Full width for button */
+}
+
+/* Hover effect for button */
+.task-report-button:hover {
+  background-color: #155ab6; /* Darker blue for hover */
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3); /* Stronger shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .task-report {
+      padding: 20px; /* Reduced padding for smaller screens */
   }
-  
-  /* Title style */
+
   .task-report-title {
-    font-size: 2rem;
-    color: #2c3e50; /* Dark blue text */
-    text-align: center;
-    margin-bottom: 20px;
+      font-size: 2rem; /* Adjusted font size for smaller screens */
   }
-  
-  /* Input fields and select styles */
+
   .task-report-input,
   .task-report-select {
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ddd; /* Soft border */
-    font-size: 1rem;
-    margin-bottom: 15px; /* Space between fields */
-    width: 100%; /* Full width for inputs */
-    outline: none;
+      width: 100%; /* Ensure full width on smaller screens */
   }
-  
-  /* Focus effect for inputs */
-  .task-report-input:focus,
-  .task-report-select:focus {
-    border-color: #1a73e8; /* Blue focus color */
-    box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
-  }
-  
-  /* Button styles */
-  .task-report-button {
-    padding: 12px;
-    background-color: #1a73e8; /* Blue button color */
-    color: white;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; /* Full width for button */
-  }
-  
-  /* Hover effect for button */
-  .task-report-button:hover {
-    background-color: #155ab6; /* Darker blue for hover */
-    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 500px) {
-    .task-report {
-      padding: 15px;
-    }
-  
-    .task-report-title {
-      font-size: 1.8rem;
-    }
-  }
-  
+}
