@@ -28,10 +28,14 @@ const Register = () => {
       });
 
       // Handle success - redirect to login or dashboard
-      navigate('/');
+      navigate('/'); // Redirect to login page
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong');
     }
+  };
+
+  const handleLoginRedirect = () => {
+    navigate('/'); // Redirect to the login page
   };
 
   return (
@@ -77,6 +81,13 @@ const Register = () => {
       />
       
       <button className="register-button" type="submit">Register</button>
+      
+      <p className="login-prompt">
+        Already have an account?{' '}
+        <button type="button" className="login-button-custom" onClick={handleLoginRedirect}>
+          Login
+        </button>
+      </p>
     </form>
   );
 };

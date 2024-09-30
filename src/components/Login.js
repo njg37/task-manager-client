@@ -33,6 +33,10 @@ const Login = () => {
     }
   };
 
+  const handleRegisterRedirect = () => {
+    navigate('/register'); // Redirect to the register page
+  };
+
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <h2 className="login-title">Login</h2>
@@ -54,6 +58,12 @@ const Login = () => {
       <button className="login-button" type="submit" disabled={isLoading}>
         {isLoading ? 'Logging in...' : 'Login'}
       </button>
+      <p className="register-prompt">
+        Don't have an account?{' '}
+        <button type="button" className="register-button-custom" onClick={handleRegisterRedirect}>
+          Register
+        </button>
+      </p>
     </form>
   );
 };
