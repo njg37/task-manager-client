@@ -1,0 +1,92 @@
+/* Main Dashboard container */
+.task-dashboard {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background for the dashboard */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Dashboard title */
+  .dashboard-title {
+    font-size: 2rem;
+    color: #2c3e50; /* Dark blue for the title */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Button styles */
+  .create-task-button, .edit-button, .delete-button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Create Task Button */
+  .create-task-button {
+    background-color: #28a745; /* Green */
+  }
+  
+  .create-task-button:hover {
+    background-color: #218838; /* Darker green */
+  }
+  
+  /* Edit Button */
+  .edit-button {
+    background-color: #007bff; /* Blue */
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  /* Delete Button */
+  .delete-button {
+    background-color: #dc3545; /* Red */
+  }
+  
+  .delete-button:hover {
+    background-color: #c82333; /* Darker red */
+  }
+  
+  /* Task List */
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Individual task item */
+  .task-item {
+    padding: 15px;
+    background-color: #ffffff; /* White background for tasks */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between; /* Align buttons to the right */
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: space-between; /* Align pagination buttons */
+    margin-top: 20px;
+  }
+  
+  .pagination button {
+    padding: 10px 15px;
+    border: 1px solid #007bff; /* Blue border for pagination buttons */
+    background-color: #ffffff; /* White background */
+    color: #007bff; /* Blue text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .pagination button:hover {
+    background-color: #007bff; /* Change to blue background on hover */
+    color: white; /* White text on hover */
+  }
+  

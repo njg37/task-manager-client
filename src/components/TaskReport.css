@@ -1,0 +1,67 @@
+/* Main Task Report container */
+.task-report {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light gray background for the report section */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Max width for the report section */
+    margin: 20px auto; /* Centering */
+  }
+  
+  /* Title style */
+  .task-report-title {
+    font-size: 2rem;
+    color: #2c3e50; /* Dark blue text */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Input fields and select styles */
+  .task-report-input,
+  .task-report-select {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* Soft border */
+    font-size: 1rem;
+    margin-bottom: 15px; /* Space between fields */
+    width: 100%; /* Full width for inputs */
+    outline: none;
+  }
+  
+  /* Focus effect for inputs */
+  .task-report-input:focus,
+  .task-report-select:focus {
+    border-color: #1a73e8; /* Blue focus color */
+    box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+  }
+  
+  /* Button styles */
+  .task-report-button {
+    padding: 12px;
+    background-color: #1a73e8; /* Blue button color */
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Full width for button */
+  }
+  
+  /* Hover effect for button */
+  .task-report-button:hover {
+    background-color: #155ab6; /* Darker blue for hover */
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 500px) {
+    .task-report {
+      padding: 15px;
+    }
+  
+    .task-report-title {
+      font-size: 1.8rem;
+    }
+  }
+  

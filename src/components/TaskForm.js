@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './TaskForm.css'; // Import specific CSS for TaskForm
 
 const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin }) => {
   const [title, setTitle] = useState('');
@@ -100,11 +101,12 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin 
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>{currentTask ? 'Edit Task' : 'Create New Task'}</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <form className="task-form" onSubmit={handleSubmit}>
+      <h2 className="task-form-title">{currentTask ? 'Edit Task' : 'Create New Task'}</h2>
+      {error && <p className="task-form-error">{error}</p>}
       
       <input
+        className="task-form-input"
         type="text"
         placeholder="Title"
         value={title}
@@ -113,6 +115,7 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin 
       />
       
       <textarea
+        className="task-form-textarea"
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
@@ -120,19 +123,20 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin 
       />
       
       <input
+        className="task-form-input"
         type="date"
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
         required
       />
       
-      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+      <select className="task-form-select" value={priority} onChange={(e) => setPriority(e.target.value)}>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
       
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+      <select className="task-form-select" value={status} onChange={(e) => setStatus(e.target.value)}>
         <option value="To Do">To Do</option>
         <option value="In Progress">In Progress</option>
         <option value="Completed">Completed</option>
@@ -141,8 +145,8 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin 
       {/* Only show user assignment dropdown for admin */}
       {isAdmin && users.length > 0 && (
         <div>
-          <label>Assign To:</label>
-          <select value={assignedUser} onChange={(e) => setAssignedUser(e.target.value)}>
+          <label className="task-form-label">Assign To:</label>
+          <select className="task-form-select" value={assignedUser} onChange={(e) => setAssignedUser(e.target.value)}>
             <option value="">Select User</option>
             {users.map(user => (
               <option key={user._id} value={user._id}>
@@ -153,9 +157,9 @@ const TaskForm = ({ fetchTasks, currentTask, clearCurrentTask, onClose, isAdmin 
         </div>
       )}
 
-      <button type="submit">{currentTask ? 'Update Task' : 'Create Task'}</button>
-      {currentTask && <button onClick={clearCurrentTask}>Cancel Edit</button>}
-      <button type="button" onClick={onClose}>Close</button>
+      <button className="task-form-button" type="submit">{currentTask ? 'Update Task' : 'Create Task'}</button>
+      {currentTask && <button className="task-form-button" type="button" onClick={clearCurrentTask}>Cancel Edit</button>}
+      <button className="task-form-button" type="button" onClick={onClose}>Close</button>
     </form>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Register.css'; // Import specific CSS file for Register form
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -20,7 +21,7 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      await axios.post('http://localhost:5000/api/auth/register', {
         username,
         email,
         password,
@@ -34,12 +35,13 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Register</h2>
+    <form className="register-form" onSubmit={handleSubmit}>
+      <h2 className="register-title">Register</h2>
       
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="register-error">{error}</p>}
       
       <input
+        className="register-input"
         type="text"
         placeholder="Username"
         value={username}
@@ -48,6 +50,7 @@ const Register = () => {
       />
       
       <input
+        className="register-input"
         type="email"
         placeholder="Email"
         value={email}
@@ -56,6 +59,7 @@ const Register = () => {
       />
       
       <input
+        className="register-input"
         type="password"
         placeholder="Password"
         value={password}
@@ -64,6 +68,7 @@ const Register = () => {
       />
       
       <input
+        className="register-input"
         type="password"
         placeholder="Confirm Password"
         value={confirmPassword}
@@ -71,7 +76,7 @@ const Register = () => {
         required
       />
       
-      <button type="submit">Register</button>
+      <button className="register-button" type="submit">Register</button>
     </form>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskForm from './TaskForm';
+import './TaskDashboard.css'; // Import specific CSS for the TaskDashboard
 
 const TaskDashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -57,12 +58,14 @@ const TaskDashboard = () => {
   };
 
   return (
-    <div>
-      <h2>Your Tasks</h2>
+    <div className="task-dashboard">
+      <h2 className="dashboard-title">Your Tasks</h2>
       
       {/* Create Task Button */}
       {!showForm && (
-        <button onClick={() => setShowForm(true)}>Create New Task</button>
+        <button className="create-task-button" onClick={() => setShowForm(true)}>
+          Create New Task
+        </button>
       )}
       
       {/* Task Creation/Editing Form */}
@@ -80,13 +83,13 @@ const TaskDashboard = () => {
       )}
       
       {/* Task List */}
-      <ul>
+      <ul className="task-list">
         {tasks.length > 0 ? (
           tasks.map(task => (
-            <li key={task._id}>
+            <li key={task._id} className="task-item">
               {task.title} - {task.status} - {task.priority}
-              <button onClick={() => editTask(task)}>Edit</button>
-              <button onClick={() => deleteTask(task._id)}>Delete</button>
+              <button className="edit-button" onClick={() => editTask(task)}>Edit</button>
+              <button className="delete-button" onClick={() => deleteTask(task._id)}>Delete</button>
             </li>
           ))
         ) : (
@@ -95,8 +98,10 @@ const TaskDashboard = () => {
       </ul>
 
       {/* Pagination */}
-      <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
-      <button onClick={() => setPage(page + 1)}>Next</button>
+      <div className="pagination">
+        <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
+        <button onClick={() => setPage(page + 1)}>Next</button>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './TaskReport.css'; // Import specific CSS for TaskReport
 
 const TaskReport = () => {
   const [status, setStatus] = useState('');
@@ -42,12 +43,12 @@ const TaskReport = () => {
   };
 
   return (
-    <div>
-      <h2>Generate Task Summary Report</h2>
+    <div className="task-report">
+      <h2 className="task-report-title">Generate Task Summary Report</h2>
       
       {/* Status Filter */}
       <label>Status: </label>
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+      <select className="task-report-select" value={status} onChange={(e) => setStatus(e.target.value)}>
         <option value="">All</option>
         <option value="To Do">To Do</option>
         <option value="In Progress">In Progress</option>
@@ -56,7 +57,7 @@ const TaskReport = () => {
 
       {/* Priority Filter */}
       <label>Priority: </label>
-      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+      <select className="task-report-select" value={priority} onChange={(e) => setPriority(e.target.value)}>
         <option value="">All</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
@@ -65,20 +66,20 @@ const TaskReport = () => {
 
       {/* Date Range Filters */}
       <label>Start Date: </label>
-      <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+      <input className="task-report-input" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
       
       <label>End Date: </label>
-      <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+      <input className="task-report-input" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
 
       {/* Format Selection */}
       <label>Report Format: </label>
-      <select value={format} onChange={(e) => setFormat(e.target.value)}>
+      <select className="task-report-select" value={format} onChange={(e) => setFormat(e.target.value)}>
         <option value="json">JSON</option>
         <option value="csv">CSV</option>
       </select>
 
       {/* Submit Button */}
-      <button onClick={fetchReport}>Generate Report</button>
+      <button className="task-report-button" onClick={fetchReport}>Generate Report</button>
 
       {/* Display JSON Report */}
       {format === 'json' && reportData && (
