@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/task-manager-client/static/css/main.b956c1d1.css",
-    "main.js": "/task-manager-client/static/js/main.ac011c04.js",
+    "main.css": "/task-manager-client/static/css/main.db420893.css",
+    "main.js": "/task-manager-client/static/js/main.d6a54ceb.js",
     "static/js/453.b6b9380d.chunk.js": "/task-manager-client/static/js/453.b6b9380d.chunk.js",
     "static/media/fa-solid-900.ttf": "/task-manager-client/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
     "static/media/fa-brands-400.ttf": "/task-manager-client/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
@@ -12,12 +12,12 @@
     "static/media/fa-v4compatibility.ttf": "/task-manager-client/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
     "static/media/fa-v4compatibility.woff2": "/task-manager-client/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
     "index.html": "/task-manager-client/index.html",
-    "main.b956c1d1.css.map": "/task-manager-client/static/css/main.b956c1d1.css.map",
-    "main.ac011c04.js.map": "/task-manager-client/static/js/main.ac011c04.js.map",
+    "main.db420893.css.map": "/task-manager-client/static/css/main.db420893.css.map",
+    "main.d6a54ceb.js.map": "/task-manager-client/static/js/main.d6a54ceb.js.map",
     "453.b6b9380d.chunk.js.map": "/task-manager-client/static/js/453.b6b9380d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b956c1d1.css",
-    "static/js/main.ac011c04.js"
+    "static/css/main.db420893.css",
+    "static/js/main.d6a54ceb.js"
   ]
 }
