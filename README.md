@@ -32,9 +32,9 @@ Task Manager is a full-stack web application designed to streamline task managem
 ### Installation
 
 1. Clone the repository:
-For Frontend
+#### For Frontend
 git clone https://github.com/njg37/task-manager-client.git
-For Backend
+#### For Backend
 git clone https://github.com/njg37/task-manager-backend.git
 
 
@@ -182,10 +182,10 @@ Note: This route doesn't require authentication but provides limited information
 
 ## Deployment
 
-Frontend Deployment
+#### Frontend Deployment
 The frontend has been deployed on GitHub Pages. You can access it at: https://njg37.github.io/task-manager-client
 
-Backend Deployment
+#### Backend Deployment
 The backend has been deployed on Render.
 
 ## Acknowledgments
