@@ -32,8 +32,10 @@ Task Manager is a full-stack web application designed to streamline task managem
 ### Installation
 
 1. Clone the repository:
+For Frontend
 git clone https://github.com/njg37/task-manager-client.git
-          https://github.com/njg37/task-manager-backend.git
+For Backend
+git clone https://github.com/njg37/task-manager-backend.git
 
 
 2. Navigate to the project directory:
@@ -57,7 +59,7 @@ npm start
 
 ## Usage
 
-1. Access the frontend application at `http://localhost:3000`
+1. Access the frontend application at https://njg37.github.io/task-manager-client
 2. Register or log in to access the task management dashboard
 3. Create, edit, and delete tasks as needed
 4. Manage task statuses and priorities
@@ -72,12 +74,9 @@ npm start
 
 Register a new user
 
-Request Body:
-json { "username": "string", "email": "string", "password": "string" }
+Request Body: json { "username": "string", "email": "string", "password": "string", "role": "string" // Optional, either 'user' or 'admin' }
 
-
-Response:
-json { "_id": "ObjectId", "username": "string", "email": "string" }
+Response: json { "_id": "ObjectId", "username": "string", "email": "string", "isAdmin": boolean }
 
 
 #### POST /login
@@ -183,7 +182,11 @@ Note: This route doesn't require authentication but provides limited information
 
 ## Deployment
 
-Deployment instructions will be added once the project is live.
+Frontend Deployment
+The frontend has been deployed on GitHub Pages. You can access it at: https://njg37.github.io/task-manager-client
+
+Backend Deployment
+The backend has been deployed on Render.
 
 ## Acknowledgments
 
